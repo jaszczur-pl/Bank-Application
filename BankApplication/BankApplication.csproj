@@ -105,6 +105,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -112,6 +113,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812242236412_InitialCreate.cs" />
+    <Compile Include="Migrations\201812242236412_InitialCreate.Designer.cs">
+      <DependentUpon>201812242236412_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812242338049_ID.cs" />
+    <Compile Include="Migrations\201812242338049_ID.Designer.cs">
+      <DependentUpon>201812242338049_ID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -130,6 +140,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201812242236412_InitialCreate.resx">
+      <DependentUpon>201812242236412_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812242338049_ID.resx">
+      <DependentUpon>201812242338049_ID.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

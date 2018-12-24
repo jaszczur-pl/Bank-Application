@@ -18,5 +18,9 @@ namespace BankApplication.Controllers
                             select c;
             return View(customers);
         }
+
+        public ActionResult Login() {
+            return View();
+        }
     }
 }
