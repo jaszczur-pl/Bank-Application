@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace BankApplication.Models
 {
@@ -15,5 +16,10 @@ namespace BankApplication.Models
         public double Balance { get; set; }
         public bool IsBlocked { get; set; }
         public int IncorrectLogins { get; set; }
+    }
+
+    public class CustomerDBContext: DbContext {
+        public CustomerDBContext() { }
+        public DbSet<Customer> Customers { get; set; }
     }
 }
