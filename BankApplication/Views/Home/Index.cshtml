@@ -2,6 +2,9 @@
 
 @{
     Layout = null;
+    if (Session["userID"] == null) {
+        Response.Redirect("~/Login/Index");
+    }
 }
 
 <!DOCTYPE html>
@@ -12,6 +15,8 @@
     <title>Index</title>
 </head>
 <body>
+
+    
 
     <table class="table">
         <tr>
