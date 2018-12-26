@@ -28,18 +28,27 @@ namespace BankApplication.Controllers
                 }
                 else {
 
-                    var selectedCustomerWithPassword = db.Customers.Where(c => c.ID == customer.ID && c.Password == customer.Password).FirstOrDefault();
+                    bool isAccountBlocked = CheckIfAccountIsBlocked(selectedCustomer);
 
-                    if (selectedCustomerWithPassword == null) {
-                        selectedCustomer.IncorrectLogins += 1;
-                        db.SaveChanges();
-                        return View("Index");
+                    if (isAccountBlocked) {
+                        return HttpNotFound("Account is blocked");
                     }
                     else {
-                        Session["userID"] = selectedCustomer.ID;
-                        return RedirectToAction("Index", "Home");
-                    }
-                    
+
+                        var selectedCustomerWithPassword = db.Customers.Where(c => c.ID == customer.ID && c.Password == customer.Password).FirstOrDefault();
+
+                        if (selectedCustomerWithPassword == null) {
+                            selectedCustomer.IncorrectLogins += 1;
+                            db.SaveChanges();
+                            return View("Index");
+                        }
+                        else {
+                            selectedCustomer.IncorrectLogins = 0;
+                            db.SaveChanges();
+                            Session["userID"] = selectedCustomer.ID;
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }  
                 }
             }
         }
@@ -49,9 +58,17 @@ namespace BankApplication.Controllers
             return RedirectToAction("Index", "Login");
         }
 
-        //public bool IsAccountBlocked(Customer cust) {
+        public bool CheckIfAccountIsBlocked(Customer cust) {
 
+            bool isAccountBlocked = false;
 
-        //}
+            int incorrectLogins = cust.IncorrectLogins;
+
+            if (incorrectLogins >= 3) {
+                isAccountBlocked = true;
+            }
+
+            return isAccountBlocked;
+        }
     }
 }
