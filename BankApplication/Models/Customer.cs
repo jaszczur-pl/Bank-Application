@@ -24,6 +24,7 @@ namespace BankApplication.Models
         public double Balance { get; set; }
         public bool IsBlocked { get; set; }
         public int IncorrectLogins { get; set; }
+
     }
 
     public class CustomerDBContext: DbContext {

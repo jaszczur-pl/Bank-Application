@@ -19,8 +19,5 @@ namespace BankApplication.Controllers
             return View(customers);
         }
 
-        public ActionResult Login() {
-            return View();
-        }
     }
 }
