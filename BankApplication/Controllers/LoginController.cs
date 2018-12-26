@@ -44,6 +44,11 @@ namespace BankApplication.Controllers
             }
         }
 
+        public ActionResult Logout() {
+            Session.Abandon();
+            return RedirectToAction("Index", "Login");
+        }
+
         //public bool IsAccountBlocked(Customer cust) {
 
 
