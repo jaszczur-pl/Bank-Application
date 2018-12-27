@@ -127,7 +127,9 @@
       <DependentUpon>201812271735453_isBlocked.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
