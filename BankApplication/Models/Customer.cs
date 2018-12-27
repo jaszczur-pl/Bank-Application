@@ -22,7 +22,6 @@ namespace BankApplication.Models
 
         public string AccountNumber { get; set; }
         public double Balance { get; set; }
-        public bool IsBlocked { get; set; }
         public int IncorrectLogins { get; set; }
 
     }

@@ -122,6 +122,10 @@
     <Compile Include="Migrations\201812242338049_ID.Designer.cs">
       <DependentUpon>201812242338049_ID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812271735453_isBlocked.cs" />
+    <Compile Include="Migrations\201812271735453_isBlocked.Designer.cs">
+      <DependentUpon>201812271735453_isBlocked.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -148,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812242338049_ID.resx">
       <DependentUpon>201812242338049_ID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812271735453_isBlocked.resx">
+      <DependentUpon>201812271735453_isBlocked.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
