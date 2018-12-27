@@ -23,5 +23,13 @@ namespace BankApplication.Controllers
             return View();
         }
 
+        public ActionResult History() {
+            return View();
+        }
+
+        public ActionResult Card() {
+            return View();
+        }
+
     }
 }
