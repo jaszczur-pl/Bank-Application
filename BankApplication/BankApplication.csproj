@@ -118,17 +118,9 @@
     <Compile Include="Migrations\201812242236412_InitialCreate.Designer.cs">
       <DependentUpon>201812242236412_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812242338049_ID.cs" />
-    <Compile Include="Migrations\201812242338049_ID.Designer.cs">
-      <DependentUpon>201812242338049_ID.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201812271735453_isBlocked.cs" />
     <Compile Include="Migrations\201812271735453_isBlocked.Designer.cs">
       <DependentUpon>201812271735453_isBlocked.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901040916113_newID.cs" />
-    <Compile Include="Migrations\201901040916113_newID.Designer.cs">
-      <DependentUpon>201901040916113_newID.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Card.cs" />
@@ -159,14 +151,8 @@
     <EmbeddedResource Include="Migrations\201812242236412_InitialCreate.resx">
       <DependentUpon>201812242236412_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812242338049_ID.resx">
-      <DependentUpon>201812242338049_ID.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812271735453_isBlocked.resx">
       <DependentUpon>201812271735453_isBlocked.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901040916113_newID.resx">
-      <DependentUpon>201901040916113_newID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
