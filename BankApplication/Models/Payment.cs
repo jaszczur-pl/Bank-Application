@@ -8,8 +8,8 @@ namespace BankApplication.Models
 {
     public class Payment
     {
+        public int PaymentID { get; set; }
         public int ID { get; set; }
-        public string CustomerID { get; set; }
         public double Amount { get; set; }
         public string BeneficiaryAccount { get; set; }
         public string Title { get; set; }

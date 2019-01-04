@@ -8,8 +8,8 @@ namespace BankApplication.Models
 {
     public class Card
     {
+        public int CardID { get; set; }
         public int ID { get; set; }
-        public string CustomerID { get; set; }
         public bool IsActive { get; set; }
     }
 
