@@ -20,7 +20,7 @@ namespace BankApplication.Controllers
 
             using(CustomerDBContext db = new CustomerDBContext()) {
 
-                var selectedCustomer = db.Customers.Where(c => c.ID == customer.ID).FirstOrDefault();
+                var selectedCustomer = db.Customers.Where(c => c.ID == (int)customer.ID).FirstOrDefault();
 
                 if (selectedCustomer == null) {
                     return HttpNotFound("Customer doesn't exist");

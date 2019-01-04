@@ -11,8 +11,7 @@ namespace BankApplication.Models
     public class Customer
     {
         [DisplayName("User ID")]
-        [MaxLength(8)]
-        public string ID { get; set; }
+        public int ID { get; set; }
 
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -23,7 +22,6 @@ namespace BankApplication.Models
         public string AccountNumber { get; set; }
         public double Balance { get; set; }
         public int IncorrectLogins { get; set; }
-
     }
 
     public class CustomerDBContext: DbContext {

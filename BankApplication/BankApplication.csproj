@@ -126,6 +126,10 @@
     <Compile Include="Migrations\201812271735453_isBlocked.Designer.cs">
       <DependentUpon>201812271735453_isBlocked.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901040916113_newID.cs" />
+    <Compile Include="Migrations\201901040916113_newID.Designer.cs">
+      <DependentUpon>201901040916113_newID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -160,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812271735453_isBlocked.resx">
       <DependentUpon>201812271735453_isBlocked.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901040916113_newID.resx">
+      <DependentUpon>201901040916113_newID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
