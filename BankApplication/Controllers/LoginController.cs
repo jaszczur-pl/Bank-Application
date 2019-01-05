@@ -20,7 +20,7 @@ namespace BankApplication.Controllers
 
             using(CustomerDBContext db = new CustomerDBContext()) {
 
-                var selectedCustomer = db.Customers.Where(c => c.ID == (int)customer.ID).FirstOrDefault();
+                var selectedCustomer = db.Customers.Where(c => c.CustomerID == (int)customer.CustomerID).FirstOrDefault();
 
                 if (selectedCustomer == null) {
                     return HttpNotFound("Customer doesn't exist");
@@ -35,7 +35,7 @@ namespace BankApplication.Controllers
                     }
                     else {
 
-                        var selectedCustomerWithPassword = db.Customers.Where(c => c.ID == customer.ID && c.Password == customer.Password).FirstOrDefault();
+                        var selectedCustomerWithPassword = db.Customers.Where(c => c.CustomerID == customer.CustomerID && c.Password == customer.Password).FirstOrDefault();
 
                         if (selectedCustomerWithPassword == null) {
                             selectedCustomer.IncorrectLogins += 1;
@@ -45,7 +45,7 @@ namespace BankApplication.Controllers
                         else {
                             selectedCustomer.IncorrectLogins = 0;
                             db.SaveChanges();
-                            Session["userID"] = selectedCustomer.ID;
+                            Session["userID"] = selectedCustomer.CustomerID;
                             return RedirectToAction("Index", "Home");
                         }
                     }  

@@ -10,7 +10,6 @@ namespace BankApplication.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "BankApplication.Models.CustomerDBContext";
         }
 
         protected override void Seed(BankApplication.Models.CustomerDBContext context)

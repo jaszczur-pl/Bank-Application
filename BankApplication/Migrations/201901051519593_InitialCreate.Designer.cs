@@ -13,7 +13,7 @@ namespace BankApplication.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201812242236412_InitialCreate"; }
+            get { return "201901051519593_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
