@@ -10,6 +10,8 @@ namespace BankApplication.Controllers
     public class HomeController : Controller
     {
         private CustomerDBContext customerDB = new CustomerDBContext();
+        private PaymentDBContext paymentDB = new PaymentDBContext();
+        private CardDBContext cardDB = new CardDBContext();
 
         // GET: Home
         public ActionResult Index()
@@ -24,11 +26,15 @@ namespace BankApplication.Controllers
         }
 
         public ActionResult History() {
-            return View();
+            var transactions = from t in paymentDB.Payments
+                               select t;
+            return View(transactions);
         }
 
         public ActionResult Card() {
-            return View();
+            var cards = from c in cardDB.Cards
+                        select c;
+            return View(cards);
         }
 
     }

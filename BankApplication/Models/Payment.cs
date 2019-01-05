@@ -22,6 +22,6 @@ namespace BankApplication.Models
     public class PaymentDBContext : DbContext
     {
         public PaymentDBContext() { }
-        public DbSet<Card> Payments { get; set; }
+        public DbSet<Payment> Payments { get; set; }
     }
 }
