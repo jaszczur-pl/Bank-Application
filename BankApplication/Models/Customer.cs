@@ -28,5 +28,7 @@ namespace BankApplication.Models
     public class CustomerDBContext: DbContext {
         public CustomerDBContext() { }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Card> Cards { get; set; }
+        public DbSet<Payment> Payments { get; set; }
     }
 }

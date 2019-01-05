@@ -19,9 +19,4 @@ namespace BankApplication.Models
         public Customer Customer { get; set; }
     }
 
-    public class PaymentDBContext : DbContext
-    {
-        public PaymentDBContext() { }
-        public DbSet<Payment> Payments { get; set; }
-    }
 }
