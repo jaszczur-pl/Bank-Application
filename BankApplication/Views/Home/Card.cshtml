@@ -1,6 +1,10 @@
-﻿
+﻿@model IEnumerable<BankApplication.Models.Card>
+
 @{
     Layout = null;
+    if (Session["userID"] == null) {
+        Response.Redirect("~/Login/Index");
+    }
 }
 
 <!DOCTYPE html>
@@ -8,9 +12,78 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Card</title>
+    <title>Index</title>
+
+    <style>
+        #box {
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #logo {
+            background-color: cornflowerblue;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #nav {
+            float: left;
+            background-color: lightblue;
+            width: 120px;
+            min-height: 620px;
+            padding: 10px;
+        }
+
+        #content {
+            float: left;
+            padding: 20px;
+            width: 640px;
+        }
+
+        #ad {
+            float: left;
+            width: 160px;
+            min-height: 620px;
+            padding: 10px;
+            background-color: lightblue;
+        }
+
+        #footer {
+            clear: both;
+            background-color: cornflowerblue;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Card</h1>
+
+    <div id="box">
+        <div id="logo">
+            <h1>Bank Application</h1>
+        </div>
+
+        <div id="nav">
+            <a href="@Url.Action("Index", "Home")" style="float:right">Back</a></br></br>
+        </div>
+
+        <div id="content">
+            @foreach (var item in Model) {
+                <p>Card number: @Html.DisplayFor(modelItem => item.CardID)</p>
+            }
+        </div>
+
+        <div id="ad">
+            Jakaś reklama
+        </div>
+
+        <div id="footer">
+            Bank Application &copy; Maciej Jaszczura, Małgorzata Kucharska
+        </div>
+    </div>
+
 </body>
 </html>
