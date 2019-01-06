@@ -74,6 +74,19 @@
             @foreach (var item in Model) {
                 <p>Card number: @Html.DisplayFor(modelItem => item.CardID)</p>
             }
+            <table>
+                <tr>
+                    <td></td>
+                    <td>
+                        @using (Html.BeginForm("OrderCard", "Home", FormMethod.Post)) {
+                            <input type="submit" name="name" value="Order new card" />
+                        }
+                        @using (Html.BeginForm("DeactivateCard", "Home", FormMethod.Post)) {
+                            <input type="submit" name="name" value="Deactivate card" />
+                        }
+                    </td>
+                </tr>
+            </table>
         </div>
 
         <div id="ad">

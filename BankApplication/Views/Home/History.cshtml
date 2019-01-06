@@ -71,25 +71,25 @@
         </div>
 
         <div id="content">
-            <table style="width=100%">
+            <table frame="border" style="width=100%">
                 <tr>
-                    <th>@Html.LabelFor(model => model.First().PaymentID)</th>
+                    <th width="200" height="50">@Html.LabelFor(model => model.First().PaymentID)</th>
 
-                    <th>@Html.LabelFor(model => model.First().BeneficiaryAccount)</th>
+                    <th width="200" height="50">@Html.LabelFor(model => model.First().BeneficiaryAccount)</th>
 
-                    <th>@Html.LabelFor(model => model.First().Amount)</th>
+                    <th width="200" height="50">@Html.LabelFor(model => model.First().Amount)</th>
 
-                    <th>@Html.LabelFor(model => model.First().Title)</th>
+                    <th width="200" height="50">@Html.LabelFor(model => model.First().Title)</th>
                 </tr>
                 @foreach (var item in Model) {
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => item.PaymentID)</td>
+                    <td width="200" height="30">@Html.DisplayFor(modelItem => item.PaymentID)</td>
 
-                    <td>@Html.DisplayFor(modelItem => item.BeneficiaryAccount)</td>
+                    <td width="200" height="30">@Html.DisplayFor(modelItem => item.BeneficiaryAccount)</td>
 
-                    <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+                    <td width="200" height="30">@Html.DisplayFor(modelItem => item.Amount)</td>
 
-                    <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                    <td width="200" height="30">@Html.DisplayFor(modelItem => item.Title)</td>
                 </tr>
                     
                 }

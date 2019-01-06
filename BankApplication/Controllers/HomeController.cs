@@ -50,5 +50,39 @@ namespace BankApplication.Controllers
             return View(cards);
         }
 
+        public ActionResult OrderCard() {
+            int userID = Convert.ToInt32(System.Web.HttpContext.Current.Session["userID"]);
+
+            using (CustomerDBContext db = new CustomerDBContext()) {
+                Card newCard = new Card {
+                    IsActive = true,
+                    CustomerID = userID
+                };
+
+                db.Cards.Add(newCard);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Card");
+        }
+
+        public ActionResult DeactivateCard() {
+            int userID = Convert.ToInt32(System.Web.HttpContext.Current.Session["userID"]);
+
+            using (CustomerDBContext db = new CustomerDBContext()) {
+                var cards = from c in db.Cards
+                            where c.CustomerID == userID
+                            select c;
+
+                foreach (Card card in cards) {
+                    card.IsActive = false;
+                }
+
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Card");
+        }
+
     }
 }

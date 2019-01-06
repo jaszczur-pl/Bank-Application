@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace BankApplication.Models
         [Key]
         public int PaymentID { get; set; }
         public double Amount { get; set; }
+        [DisplayName("Opposite Account")]
         public string BeneficiaryAccount { get; set; }
         public string Title { get; set; }
 
