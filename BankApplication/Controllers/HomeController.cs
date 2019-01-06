@@ -12,9 +12,13 @@ namespace BankApplication.Controllers
         private CustomerDBContext customerDB = new CustomerDBContext();
 
         // GET: Home
+        [HttpGet]
         public ActionResult Index()
         {
+            int userID = Convert.ToInt32(System.Web.HttpContext.Current.Session["userID"]);
+
             var customers = from c in customerDB.Customers
+                            where c.CustomerID == userID
                             select c;
             return View(customers);
         }
@@ -23,20 +27,26 @@ namespace BankApplication.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult History() {
-            var transactions = from t in customerDB.Payments
-                               select t;
+
+            int userID = Convert.ToInt32(System.Web.HttpContext.Current.Session["userID"]);
+
+            var transactions = from tran in customerDB.Payments
+                               where tran.CustomerID == userID
+                               select tran;
 
             return View(transactions);
         }
 
         public ActionResult Card() {
-            
-            var cards = from c in customerDB.Cards
-                        from cust in customerDB.Customers
-                        where c.CustomerID == cust.CustomerID 
-                        && c.IsActive == true
-                        select c;
+
+            int userID = Convert.ToInt32(System.Web.HttpContext.Current.Session["userID"]);
+
+            var cards = from card in customerDB.Cards
+                        where card.CustomerID == userID
+                        && card.IsActive == true
+                        select card;
             return View(cards);
         }
 
