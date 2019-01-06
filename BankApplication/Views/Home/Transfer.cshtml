@@ -75,39 +75,41 @@
         </div>
 
         <div id="content">
-            <table id="transaction">
-                <tr>
-                    <td height="50">
-                        @Html.LabelFor(model => model.BeneficiaryAccount)
-                    </td>
-                    <td>
-                        @Html.EditorFor(model => model.BeneficiaryAccount)
-                    </td>
-                </tr>
-                <tr>
-                    <td height="50">
-                        @Html.LabelFor(model => model.Amount)
-                    </td>
-                    <td>
-                        @Html.EditorFor(model => model.Amount)
-                    </td>
-                </tr>
-                <tr>
-                    <td height="50">
-                        @Html.LabelFor(model => model.Title)
-                    </td>
-                    <td>
-                        @Html.EditorFor(model => model.Title)
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <input type="submit" name="name" value="Submit"/>
-                    </td>
-                </tr>
-            </table>
-        </div>
+            @using (Html.BeginForm("MakeTransfer", "Home", FormMethod.Post)) {
+                <table id="transaction">
+                    <tr>
+                        <td height="50">
+                            @Html.LabelFor(model => model.BeneficiaryAccount)
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.BeneficiaryAccount)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="50">
+                            @Html.LabelFor(model => model.Amount)
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.Amount)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="50">
+                            @Html.LabelFor(model => model.Title)
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.Title)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" name="name" value="Submit" />
+                        </td>
+                    </tr>
+                </table>
+            }
+            </div>
 
         <div id="ad">
             Jakaś reklama

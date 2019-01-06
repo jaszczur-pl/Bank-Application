@@ -84,5 +84,28 @@ namespace BankApplication.Controllers
             return RedirectToAction("Card");
         }
 
+        [HttpPost]
+        public ActionResult MakeTransfer(Payment payment) {
+            int userID = Convert.ToInt32(System.Web.HttpContext.Current.Session["userID"]);
+
+            using (CustomerDBContext db = new CustomerDBContext()) {
+                var customer = from c in db.Customers
+                               where c.CustomerID == userID
+                               select c;
+
+                if(payment.Amount > customer.First().Balance) {
+                    return HttpNotFound("Transfer amount exceeds balance");
+                }
+                else {
+                    customer.First().Balance -= payment.Amount;
+                    payment.CustomerID = userID;
+                    db.Payments.Add(payment);
+                    db.SaveChanges();
+                    ModelState.Clear();
+                }
+            }
+
+            return View("Transfer");
+        }
     }
 }
