@@ -102,17 +102,18 @@ namespace BankApplication.Controllers
             else {
            
                 using (CustomerDBContext db = new CustomerDBContext()) {
-                    var customer = from c in db.Customers
-                                   where c.CustomerID == userID
-                                   select c;
+                    var customer = db.Customers.Where(c => c.CustomerID == userID).FirstOrDefault();
 
-                    if (payment.Amount > customer.First().Balance) {
+                    if (payment.Amount > customer.Balance) {
                         ModelState.AddModelError("Amount", "Payment amount exceeded balance");
                         return View("Transfer");
                     }
                     else {
-                        customer.First().Balance -= payment.Amount;
+                        checkInternalTransfer(customer, payment);
+
+                        customer.Balance -= payment.Amount;
                         payment.CustomerID = userID;
+                        payment.Amount = payment.Amount * (-1);
                         db.Payments.Add(payment);
                         db.SaveChanges();
                         ModelState.Clear();
@@ -120,6 +121,26 @@ namespace BankApplication.Controllers
                 }
 
                 return View("Transfer");
+            }
+        }
+
+        public void checkInternalTransfer(Customer cust, Payment pay) {
+
+            using (CustomerDBContext db = new CustomerDBContext()) {
+                var checkedCustomer = db.Customers.Where(c => c.AccountNumber == pay.BeneficiaryAccount).FirstOrDefault();
+
+                if (checkedCustomer != null) {
+                    Payment payment = new Payment {
+                        Amount = pay.Amount,
+                        BeneficiaryAccount = cust.AccountNumber,
+                        Title = pay.Title,
+                        CustomerID = checkedCustomer.CustomerID
+                    };
+
+                    checkedCustomer.Balance += pay.Amount;
+                    db.Payments.Add(payment);
+                    db.SaveChanges();
+                }    
             }
         }
     }
