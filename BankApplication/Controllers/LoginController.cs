@@ -22,33 +22,38 @@ namespace BankApplication.Controllers
 
                 var selectedCustomer = db.Customers.Where(c => c.CustomerID == (int)customer.CustomerID).FirstOrDefault();
 
-                if (selectedCustomer == null) {
-                    return HttpNotFound("Customer doesn't exist");
-
+                if (!ModelState.IsValid) {
+                    return View("Index", customer);
                 }
                 else {
+                    if (selectedCustomer == null) {
+                        return HttpNotFound("Customer doesn't exist");
 
-                    bool isAccountBlocked = CheckIfAccountIsBlocked(selectedCustomer);
-
-                    if (isAccountBlocked) {
-                        return HttpNotFound("Account is blocked");
                     }
                     else {
 
-                        var selectedCustomerWithPassword = db.Customers.Where(c => c.CustomerID == customer.CustomerID && c.Password == customer.Password).FirstOrDefault();
+                        bool isAccountBlocked = CheckIfAccountIsBlocked(selectedCustomer);
 
-                        if (selectedCustomerWithPassword == null) {
-                            selectedCustomer.IncorrectLogins += 1;
-                            db.SaveChanges();
-                            return View("Index");
+                        if (isAccountBlocked) {
+                            return HttpNotFound("Account is blocked");
                         }
                         else {
-                            selectedCustomer.IncorrectLogins = 0;
-                            db.SaveChanges();
-                            Session["userID"] = selectedCustomer.CustomerID;
-                            return RedirectToAction("Index", "Home");
+
+                            var selectedCustomerWithPassword = db.Customers.Where(c => c.CustomerID == customer.CustomerID && c.Password == customer.Password).FirstOrDefault();
+
+                            if (selectedCustomerWithPassword == null) {
+                                selectedCustomer.IncorrectLogins += 1;
+                                db.SaveChanges();
+                                return View("Index");
+                            }
+                            else {
+                                selectedCustomer.IncorrectLogins = 0;
+                                db.SaveChanges();
+                                Session["userID"] = selectedCustomer.CustomerID;
+                                return RedirectToAction("Index", "Home");
+                            }
                         }
-                    }  
+                    }
                 }
             }
         }

@@ -94,7 +94,7 @@ namespace BankApplication.Controllers
                                select c;
 
                 if(payment.Amount > customer.First().Balance) {
-                    return HttpNotFound("Transfer amount exceeds balance");
+                    return HttpNotFound("Payment amount exceeded balance");
                 }
                 else {
                     customer.First().Balance -= payment.Amount;

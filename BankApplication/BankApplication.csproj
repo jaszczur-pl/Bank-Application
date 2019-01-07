@@ -118,6 +118,10 @@
     <Compile Include="Migrations\201901051519593_InitialCreate.Designer.cs">
       <DependentUpon>201901051519593_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901062050012_CustomerAddnotations.cs" />
+    <Compile Include="Migrations\201901062050012_CustomerAddnotations.Designer.cs">
+      <DependentUpon>201901062050012_CustomerAddnotations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -146,6 +150,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201901051519593_InitialCreate.resx">
       <DependentUpon>201901051519593_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901062050012_CustomerAddnotations.resx">
+      <DependentUpon>201901062050012_CustomerAddnotations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
