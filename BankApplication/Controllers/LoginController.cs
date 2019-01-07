@@ -27,15 +27,16 @@ namespace BankApplication.Controllers
                 }
                 else {
                     if (selectedCustomer == null) {
-                        return HttpNotFound("Customer doesn't exist");
-
+                        ModelState.AddModelError("CustomerID", "Customer doesn't exist");
+                        return View("Index");
                     }
                     else {
 
                         bool isAccountBlocked = CheckIfAccountIsBlocked(selectedCustomer);
 
                         if (isAccountBlocked) {
-                            return HttpNotFound("Account is blocked");
+                            ModelState.AddModelError("CustomerID", "Account has been blocked");
+                            return View("Index");
                         }
                         else {
 
@@ -44,6 +45,7 @@ namespace BankApplication.Controllers
                             if (selectedCustomerWithPassword == null) {
                                 selectedCustomer.IncorrectLogins += 1;
                                 db.SaveChanges();
+                                ModelState.AddModelError("CustomerID", "Incorrect login/password");
                                 return View("Index");
                             }
                             else {
