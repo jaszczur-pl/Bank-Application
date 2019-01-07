@@ -81,13 +81,19 @@
                         @using (Html.BeginForm("OrderCard", "Home", FormMethod.Post)) {
                             <input type="submit" name="name" value="Order new card" />
                         }
+                    </td>
+                    <td>
                         @using (Html.BeginForm("DeactivateCard", "Home", FormMethod.Post)) {
                             <input type="submit" name="name" value="Deactivate card" />
                         }
                     </td>
                 </tr>
+
             </table>
-        </div>
+                <p>
+                    @Html.ValidationMessageFor(model => model.FirstOrDefault().CardID, null, new { @class = "text-danger" })
+                </p>
+            </div>
 
         <div id="ad">
             Jakaś reklama

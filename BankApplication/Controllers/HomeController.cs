@@ -53,17 +53,25 @@ namespace BankApplication.Controllers
         public ActionResult OrderCard() {
             int userID = Convert.ToInt32(System.Web.HttpContext.Current.Session["userID"]);
 
-            using (CustomerDBContext db = new CustomerDBContext()) {
-                Card newCard = new Card {
-                    IsActive = true,
-                    CustomerID = userID
-                };
+            var activeCard = customerDB.Cards.Where(c => c.CustomerID == userID && c.IsActive == true).FirstOrDefault();
 
-                db.Cards.Add(newCard);
-                db.SaveChanges();
+            if (activeCard != null) {
+                ModelState.AddModelError("CardID", "Customer has active card. Deactivate first");
+                return RedirectToAction("Card");
             }
+            else {
+                using (CustomerDBContext db = new CustomerDBContext()) {
+                    Card newCard = new Card {
+                        IsActive = true,
+                        CustomerID = userID
+                    };
 
-            return RedirectToAction("Card");
+                    db.Cards.Add(newCard);
+                    db.SaveChanges();
+                }
+
+                return RedirectToAction("Card");
+            }
         }
 
         public ActionResult DeactivateCard() {
@@ -88,24 +96,31 @@ namespace BankApplication.Controllers
         public ActionResult MakeTransfer(Payment payment) {
             int userID = Convert.ToInt32(System.Web.HttpContext.Current.Session["userID"]);
 
-            using (CustomerDBContext db = new CustomerDBContext()) {
-                var customer = from c in db.Customers
-                               where c.CustomerID == userID
-                               select c;
-
-                if(payment.Amount > customer.First().Balance) {
-                    return HttpNotFound("Payment amount exceeded balance");
-                }
-                else {
-                    customer.First().Balance -= payment.Amount;
-                    payment.CustomerID = userID;
-                    db.Payments.Add(payment);
-                    db.SaveChanges();
-                    ModelState.Clear();
-                }
+            if (!ModelState.IsValid) {
+                return View("Transfer", payment);
             }
+            else {
+           
+                using (CustomerDBContext db = new CustomerDBContext()) {
+                    var customer = from c in db.Customers
+                                   where c.CustomerID == userID
+                                   select c;
 
-            return View("Transfer");
+                    if (payment.Amount > customer.First().Balance) {
+                        ModelState.AddModelError("Amount", "Payment amount exceeded balance");
+                        return View("Transfer");
+                    }
+                    else {
+                        customer.First().Balance -= payment.Amount;
+                        payment.CustomerID = userID;
+                        db.Payments.Add(payment);
+                        db.SaveChanges();
+                        ModelState.Clear();
+                    }
+                }
+
+                return View("Transfer");
+            }
         }
     }
 }

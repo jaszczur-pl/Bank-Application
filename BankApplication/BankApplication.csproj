@@ -122,6 +122,10 @@
     <Compile Include="Migrations\201901062050012_CustomerAddnotations.Designer.cs">
       <DependentUpon>201901062050012_CustomerAddnotations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901071737529_PaymentAddnotations.cs" />
+    <Compile Include="Migrations\201901071737529_PaymentAddnotations.Designer.cs">
+      <DependentUpon>201901071737529_PaymentAddnotations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -153,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901062050012_CustomerAddnotations.resx">
       <DependentUpon>201901062050012_CustomerAddnotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901071737529_PaymentAddnotations.resx">
+      <DependentUpon>201901071737529_PaymentAddnotations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
