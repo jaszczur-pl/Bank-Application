@@ -10,14 +10,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace BankApplication.Models
 {
     public class Customer {
-        [DisplayName("User ID")]
-        [Key]
-        [Required]
+        [DisplayName("User ID"), Key, Required]
         public int CustomerID { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        [DataType(DataType.Password)]
-        [Required]
+        [DataType(DataType.Password), Required]
         public string Password { get; set; }
         public string AccountNumber { get; set; }
         public double Balance { get; set; }
