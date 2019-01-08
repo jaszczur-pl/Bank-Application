@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BankApplication.Models.Card>
+﻿@model BankApplication.Models.Card
 
 @{
     Layout = null;
@@ -57,6 +57,10 @@
             text-align: center;
             padding: 20px;
         }
+
+        .field-validation-error {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -71,9 +75,7 @@
         </div>
 
         <div id="content">
-            @foreach (var item in Model) {
-                <p>Card number: @Html.DisplayFor(modelItem => item.CardID)</p>
-            }
+            <p>Active card number: @Html.DisplayFor(m => m.CardID)</p>
             <table>
                 <tr>
                     <td></td>
@@ -88,12 +90,16 @@
                         }
                     </td>
                 </tr>
+                <tr></tr>
+                <tr></tr>
 
             </table>
+            @using (Html.BeginForm("OrderCard", "Home", FormMethod.Post)) {
                 <p>
-                    @Html.ValidationMessageFor(model => model.FirstOrDefault().CardID, null, new { @class = "text-danger" })
+                   @Html.ValidationMessageFor(model => model.CardID, null, new { @class = "validation" })
                 </p>
-            </div>
+            }
+        </div>
 
         <div id="ad">
 

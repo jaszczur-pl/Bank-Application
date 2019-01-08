@@ -43,11 +43,9 @@ namespace BankApplication.Controllers
 
             int userID = Convert.ToInt32(System.Web.HttpContext.Current.Session["userID"]);
 
-            var cards = from card in customerDB.Cards
-                        where card.CustomerID == userID
-                        && card.IsActive == true
-                        select card;
-            return View(cards);
+            var activeCard = customerDB.Cards.Where(c => c.CustomerID == userID && c.IsActive == true).FirstOrDefault();
+
+            return View(activeCard);
         }
 
         public ActionResult OrderCard() {
@@ -57,7 +55,7 @@ namespace BankApplication.Controllers
 
             if (activeCard != null) {
                 ModelState.AddModelError("CardID", "Customer has active card. Deactivate first");
-                return RedirectToAction("Card");
+                return View("Card", activeCard);
             }
             else {
                 using (CustomerDBContext db = new CustomerDBContext()) {
